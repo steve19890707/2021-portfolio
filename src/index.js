@@ -1,7 +1,7 @@
 import React from "react";
 import ReactDOM from "react-dom";
-import { App } from "./App";
+import { Props } from "./components/Props";
 import reportWebVitals from "./reportWebVitals";
 
-ReactDOM.render(<App />, document.getElementById("root"));
+ReactDOM.render(<Props />, document.getElementById("root"));
 reportWebVitals();

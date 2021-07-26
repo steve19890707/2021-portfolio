@@ -1,2 +1,0 @@
-(this["webpackJsonp2021-portfolio"]=this["webpackJsonp2021-portfolio"]||[]).push([[0],{9:function(t,e,n){"use strict";n.r(e);n(1);var o=n(3),c=n.n(o),i=n(0),r=function(){return Object(i.jsx)("div",{className:"App",children:"Hello world"})},s=function(t){t&&t instanceof Function&&n.e(3).then(n.bind(null,10)).then((function(e){var n=e.getCLS,o=e.getFID,c=e.getFCP,i=e.getLCP,r=e.getTTFB;n(t),o(t),c(t),i(t),r(t)}))};c.a.render(Object(i.jsx)(r,{}),document.getElementById("root")),s()}},[[9,1,2]]]);
-//# sourceMappingURL=main.6efbbd3a.chunk.js.map

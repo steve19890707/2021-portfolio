@@ -11,6 +11,10 @@ export const styles = fromJS({
       light1Front: `#ff91ff`,
       light2Back: `#128d8e`,
       light2Front: `#26feff`,
+      coverLight: `#ff00c2`,
+      highLight: `#ff0000`,
+      singLight1: `#6bff3b`,
+      singBackground: `#3b2fa2`,
     },
   },
 });

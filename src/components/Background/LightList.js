@@ -368,3 +368,128 @@ export const BuildType5List = {
     },
   ],
 };
+
+export const BuildType6List = {
+  squareLightList: [
+    {
+      position: "top:5%;left:10%;",
+      colorName: "light2",
+      delay: 1,
+    },
+    {
+      position: "top:5%;left:17.5%;",
+      colorName: "light2",
+      delay: 0.2,
+    },
+    {
+      position: "top:5%;left:25%;",
+      colorName: "light2",
+      delay: 0.4,
+    },
+    {
+      position: "top:5%;left:50%;",
+      colorName: "light2",
+      delay: 1.2,
+    },
+    {
+      position: "top:57%;right:10%;",
+      colorName: "light2",
+      delay: 1,
+    },
+    {
+      position: "top:60%;right:10%;",
+      colorName: "light2",
+      delay: 0,
+    },
+    {
+      position: "top:60%;right:17.5%;",
+      colorName: "light2",
+      delay: 0.2,
+    },
+  ],
+};
+
+export const BuildType7List = {
+  squareLightList: [
+    {
+      position: "top:5%;left:20%;",
+      colorName: "light2",
+      delay: 1,
+    },
+    {
+      position: "top:5%;left:40%;",
+      colorName: "light2",
+      delay: 1,
+    },
+    {
+      position: "top:5%;left:60%;",
+      colorName: "light2",
+      delay: 1,
+    },
+    {
+      position: "top:8%;left:20%;",
+      colorName: "light2",
+      delay: 1,
+    },
+    {
+      position: "top:8%;left:40%;",
+      colorName: "light2",
+      delay: 1,
+    },
+    {
+      position: "top:8%;left:60%;",
+      colorName: "light2",
+      delay: 1,
+    },
+    {
+      position: "top:11%;left:20%;",
+      colorName: "light2",
+      delay: 0,
+    },
+    {
+      position: "top:11%;left:40%;",
+      colorName: "light2",
+      delay: 0,
+    },
+    {
+      position: "top:11%;left:60%;",
+      colorName: "light2",
+      delay: 0,
+    },
+  ],
+};
+
+export const BuildType8List = {
+  straightLightList: [
+    {
+      position: "top:0%;left:0%;",
+      width: "100%",
+      hight: "3%",
+      colorName: "light2",
+      nodisplay: true,
+      delay: 0,
+    },
+    {
+      position: "top:0%;left:30%;",
+      width: "50%",
+      hight: "3%",
+      colorName: "light2",
+      delay: 0,
+    },
+    {
+      position: "top:5%;left:0%;",
+      width: "100%",
+      hight: "3%",
+      colorName: "light2",
+      nodisplay: true,
+      delay: 0,
+    },
+    {
+      position: "top:5%;left:30%;",
+      width: "50%",
+      hight: "3%",
+      colorName: "light2",
+      delay: 0.2,
+    },
+  ],
+};

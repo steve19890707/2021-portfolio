@@ -3,7 +3,9 @@ import { ReducerContext } from "../Props";
 import styled from "styled-components";
 import { styles } from "../../constants/styles";
 // animations
-import { flashing } from "./Animations";
+import { flashing, opacityFont } from "./Animations";
+// fetch functions
+import { fetchRwdProps } from "../../constants/fetchFuntions";
 // light lists
 import {
   BuildType1List,
@@ -11,9 +13,13 @@ import {
   BuildType3List,
   BuildType4List,
   BuildType5List,
+  BuildType6List,
+  BuildType7List,
+  BuildType8List,
 } from "./LightList";
 const common = (position) => `
   position: absolute;
+  bottom:0;
   ${position};
   .content {
     position: relative;
@@ -23,7 +29,8 @@ const common = (position) => `
 ;`;
 const renderStyleColor = ({ currentStyles = "", color = "" }) =>
   `background-color: ${styles.getIn(["background", currentStyles, color])};`;
-
+const renderFontColor = ({ currentStyles = "", color = "" }) =>
+  `color: ${styles.getIn(["background", currentStyles, color])};`;
 // common style
 const StraightLight = styled.div`
   /* animations */
@@ -53,8 +60,8 @@ const SquareLight = styled.div`
   /* animations */
   ${flashing}
   position: absolute;
-  width: 7%;
-  padding-bottom: 7%;
+  width: 10px;
+  padding-bottom: 10px;
   z-index: 2;
   ${({ position }) => position};
   ${({ currentStyles, colorName }) =>
@@ -112,13 +119,14 @@ const StyledBuildType1 = styled.div`
       content: "";
       position: absolute;
       top: 0;
-      left: 32%;
-      width: 150%;
-      padding-bottom: 150%;
-      transform-origin: center;
-      transform: translate(0%, -50%) rotate(45deg);
-      ${({ currentStyles }) =>
-        renderStyleColor({ currentStyles, color: "buildColor1" })}
+      left: 0;
+      transform: translateY(-100%);
+      border-bottom: ${({ currentStyles }) => `15px solid
+        ${styles.getIn(["background", currentStyles, "buildColor1"])}`};
+      border-top: 15px solid transparent;
+      border-left: 15px solid transparent;
+      border-right: ${({ currentStyles }) => `15px solid
+        ${styles.getIn(["background", currentStyles, "buildColor1"])}`};
     }
   }
   .side-shadow {
@@ -170,7 +178,7 @@ export const BuildType1 = ({ position }) => {
 // BuildType2
 const StyledBuildType2 = styled.div`
   ${({ position }) => common(position)};
-  width: 20%;
+  width: 18%;
   height: 75%;
   .floor-top {
     width: 60%;
@@ -234,20 +242,22 @@ const StyledBuildType3 = styled.div`
     top: 0;
     left: 0;
     transform: translateY(-95%);
-    width: 85.5%;
-    height: 6%;
+    width: calc(100% - 10px);
+    height: 10px;
     ${({ currentStyles }) =>
-      renderStyleColor({ currentStyles, color: "sideShadow1" })}
+      renderStyleColor({ currentStyles, color: "light2Front" })}
     &:after {
       content: "";
       position: absolute;
       top: 0;
       right: 0;
-      transform: translate(50%, 25%) rotate(-45deg);
-      width: 25%;
-      padding-bottom: 25%;
-      ${({ currentStyles }) =>
-        renderStyleColor({ currentStyles, color: "sideShadow1" })}
+      transform: translateX(100%);
+      border-bottom: ${({ currentStyles }) => `5px solid
+        ${styles.getIn(["background", currentStyles, "light2Front"])}`};
+      border-top: 5px solid transparent;
+      border-right: 5px solid transparent;
+      border-left: ${({ currentStyles }) => `5px solid
+        ${styles.getIn(["background", currentStyles, "light2Front"])}`};
     }
   }
   .insdie-decorate {
@@ -279,6 +289,7 @@ const StyledBuildType3 = styled.div`
 `;
 export const BuildType3 = ({ position }) => {
   const [state] = useContext(ReducerContext);
+  const decorateList = ["type1", "type2", "type3", "type4"];
   return (
     <StyledBuildType3 position={position} currentStyles={state.currentStyles}>
       <div className="content">
@@ -294,10 +305,9 @@ export const BuildType3 = ({ position }) => {
           );
         })}
         <div className="side-decorate" />
-        <div className="insdie-decorate type1" />
-        <div className="insdie-decorate type2" />
-        <div className="insdie-decorate type3" />
-        <div className="insdie-decorate type4" />
+        {decorateList.map((v, k) => (
+          <div key={k} className={`insdie-decorate ${v}`} />
+        ))}
       </div>
     </StyledBuildType3>
   );
@@ -306,7 +316,7 @@ export const BuildType3 = ({ position }) => {
 // BuildType4
 const StyledBuildType4 = styled.div`
   ${({ position }) => common(position)};
-  width: 16%;
+  width: 14%;
   height: 65%;
   ${({ currentStyles }) =>
     renderStyleColor({ currentStyles, color: "buildColor3" })}
@@ -359,7 +369,7 @@ export const BuildType4 = ({ position }) => {
 // BuildType5
 const StyledBuildType5 = styled.div`
   ${({ position }) => common(position)};
-  width: 15%;
+  width: 14%;
   height: 33%;
   ${({ currentStyles }) =>
     renderStyleColor({ currentStyles, color: "buildColor1" })}
@@ -392,6 +402,7 @@ const StyledBuildType5 = styled.div`
 `;
 export const BuildType5 = ({ position }) => {
   const [state] = useContext(ReducerContext);
+  const decorateList = ["type1", "type2", "type3", "type4"];
   return (
     <StyledBuildType5 position={position} currentStyles={state.currentStyles}>
       <div className="content">
@@ -407,22 +418,439 @@ export const BuildType5 = ({ position }) => {
           );
         })}
         <div className="side-decorate" />
-        <div className="insdie-decorate type1" />
-        <div className="insdie-decorate type2" />
-        <div className="insdie-decorate type3" />
-        <div className="insdie-decorate type4" />
+        {decorateList.map((v, k) => (
+          <div key={k} className={`insdie-decorate ${v}`} />
+        ))}
       </div>
     </StyledBuildType5>
   );
 };
 
 // BuildType6
-const StyledBuildType6 = styled.div``;
+const StyledBuildType6 = styled.div`
+  ${({ position }) => common(position)};
+  width: 20%;
+  height: 60%;
+  transform: translateX(-50%);
+  &::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    width: 100%;
+    height: 1%;
+    ${({ currentStyles }) =>
+      renderStyleColor({ currentStyles, color: `light2Front` })}
+    z-index: 3;
+  }
+  .floor-top {
+    position: relative;
+    width: 100%;
+    height: 65%;
+    ${({ currentStyles }) =>
+      renderStyleColor({ currentStyles, color: "buildColor1" })}
+    &:after {
+      content: "";
+      position: absolute;
+      bottom: 0;
+      right: 0;
+      transform: translateY(100%);
+      border-top: ${({ currentStyles }) => `15px solid
+        ${styles.getIn(["background", currentStyles, "buildColor1"])}`};
+      border-bottom: 15px solid transparent;
+      border-right: 15px solid transparent;
+      border-left: ${({ currentStyles }) => `15px solid
+        ${styles.getIn(["background", currentStyles, "buildColor1"])}`};
+    }
+    &:before {
+      content: "";
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      transform: translateY(100%);
+      border-top: ${({ currentStyles }) => `15px solid
+        ${styles.getIn(["background", currentStyles, "sideShadow1"])}`};
+      border-bottom: 15px solid transparent;
+      border-left: 15px solid transparent;
+      border-right: ${({ currentStyles }) => `15px solid
+        ${styles.getIn(["background", currentStyles, "sideShadow1"])}`};
+    }
+  }
+  .insdie-decorate {
+    position: absolute;
+    width: 3%;
+    z-index: 2;
+    ${({ currentStyles }) =>
+      renderStyleColor({ currentStyles, color: "sideShadow1" })}
+    &.type1 {
+      top: 10%;
+      right: 10%;
+      height: 32%;
+    }
+    &.type2 {
+      top: 10%;
+      right: 17%;
+      height: 28%;
+    }
+    &.type3 {
+      top: 10%;
+      right: 24%;
+      height: 28%;
+    }
+    &.type4 {
+      top: 10%;
+      right: 31%;
+      height: 25%;
+    }
+  }
+  .floor-bottom {
+    position: relative;
+    width: 80%;
+    height: 35%;
+    margin: 0 auto;
+    ${({ currentStyles }) =>
+      renderStyleColor({ currentStyles, color: "buildColor1" })}
+    &:before {
+      content: "";
+      position: absolute;
+      left: 0;
+      bottom: 0;
+      width: 50%;
+      height: 100%;
+      ${({ currentStyles }) =>
+        renderStyleColor({ currentStyles, color: "sideShadow1" })}
+    }
+  }
+`;
 export const BuildType6 = ({ position }) => {
   const [state] = useContext(ReducerContext);
+  const decorateList = ["type1", "type2", "type3", "type4"];
   return (
     <StyledBuildType6 position={position} currentStyles={state.currentStyles}>
-      <div className="content"></div>
+      <div className="content">
+        {BuildType6List.squareLightList.map((v, k) => {
+          return (
+            <SquareLight
+              key={k}
+              position={v.position}
+              currentStyles={state.currentStyles}
+              colorName={v.colorName}
+              delay={v.delay}
+            />
+          );
+        })}
+        {decorateList.map((v, k) => (
+          <div key={k} className={`insdie-decorate ${v}`} />
+        ))}
+        <div className="floor-top" />
+        <div className="floor-bottom" />
+      </div>
     </StyledBuildType6>
+  );
+};
+
+// BuildType7
+const StyledBuildType7 = styled.div`
+  ${({ position }) => common(position)};
+  width: 22%;
+  height: 78%;
+  ${({ currentStyles }) =>
+    renderStyleColor({ currentStyles, color: "buildColor3" })}
+  .side-decorate {
+    position: absolute;
+    top: 0;
+    right: 0;
+    transform: translateY(-95%);
+    width: calc(100% - 10px);
+    height: 10px;
+    ${({ currentStyles }) =>
+      renderStyleColor({ currentStyles, color: "light2Front" })}
+    &:after {
+      content: "";
+      position: absolute;
+      top: 0;
+      left: 0;
+      transform: translateX(-100%);
+      border-bottom: ${({ currentStyles }) => `5px solid
+        ${styles.getIn(["background", currentStyles, "light2Front"])}`};
+      border-top: 5px solid transparent;
+      border-left: 5px solid transparent;
+      border-right: ${({ currentStyles }) => `5px solid
+        ${styles.getIn(["background", currentStyles, "light2Front"])}`};
+    }
+  }
+  .insdie-decorate-part {
+    position: absolute;
+    width: 25%;
+    ${({ currentStyles }) =>
+      renderStyleColor({ currentStyles, color: "sideShadow1" })}
+    &.type1 {
+      top: calc(2% + 10px);
+      right: 8%;
+      height: 35%;
+    }
+    &.type2 {
+      top: calc(5% + 10px);
+      right: 36%;
+      height: 40%;
+    }
+    &.type3 {
+      top: calc(2% + 10px);
+      right: 64%;
+      height: 35%;
+    }
+  }
+  .top-part {
+    position: absolute;
+    top: 0;
+    right: 0;
+    transform: translateY(-95%);
+    width: calc(100% - 10px);
+    height: 10px;
+    ${({ currentStyles }) =>
+      renderStyleColor({ currentStyles, color: "sideShadow1" })}
+    &:after {
+      content: "";
+      position: absolute;
+      top: 0;
+      left: 0;
+      transform: translateX(-100%);
+      border-bottom: ${({ currentStyles }) => `5px solid
+        ${styles.getIn(["background", currentStyles, "sideShadow1"])}`};
+      border-top: 5px solid transparent;
+      border-left: 5px solid transparent;
+      border-right: ${({ currentStyles }) => `5px solid
+        ${styles.getIn(["background", currentStyles, "sideShadow1"])}`};
+    }
+  }
+  .other-light {
+    position: absolute;
+    bottom: 25%;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 5%;
+    height: 12%;
+    ${({ currentStyles }) =>
+      renderStyleColor({ currentStyles, color: "light1Front" })}
+    &.up {
+      bottom: 40%;
+    }
+  }
+  .sing {
+    ${opacityFont}
+    position: absolute;
+    top: -3%;
+    left: 50%;
+    width: 80%;
+    height: 12%;
+    transform: translate(-50%, -100%);
+    font-family: RingMatrix;
+    ${({ currentStyles }) =>
+      renderStyleColor({ currentStyles, color: "singBackground" })}
+    &:before {
+      content: "";
+      position: absolute;
+      bottom: 0;
+      left: 5%;
+      transform: translateY(100%);
+      width: 5%;
+      height: 15%;
+      ${({ currentStyles }) =>
+        renderStyleColor({ currentStyles, color: "singBackground" })}
+    }
+    &:after {
+      content: "";
+      position: absolute;
+      bottom: 0;
+      right: 5%;
+      transform: translateY(100%);
+      width: 5%;
+      height: 15%;
+      ${({ currentStyles }) =>
+        renderStyleColor({ currentStyles, color: "singBackground" })}
+    }
+    .sing-title {
+      width: 100%;
+      height: 100%;
+      flex-wrap: wrap;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: ${({ rwd }) =>
+        fetchRwdProps({
+          state: rwd,
+          desktop: `45px`,
+          pad: `30px`,
+          mobile: `30px`,
+        })};
+      ${({ currentStyles }) =>
+        renderFontColor({ currentStyles, color: "singLight1" })}
+    }
+  }
+`;
+const StyledAnimeSpan = styled.span`
+  animation: ${({ delay }) => `"opacityFont" 0.8s ${delay}s infinite;`};
+`;
+export const BuildType7 = ({ position }) => {
+  const [state] = useContext(ReducerContext);
+  const decorateList = ["type1", "type2", "type3"];
+  const gamesList = ["G", "A", "M", "E", "S"];
+  const storeList = ["S", "T", "O", "R", "E"];
+  const rwd = {
+    isDesktop: state.isDesktop,
+    isTablet: state.isTablet,
+    isMobile: state.isMobile,
+  };
+  return (
+    <StyledBuildType7
+      rwd={rwd}
+      position={position}
+      currentStyles={state.currentStyles}
+    >
+      <div className="content">
+        <div className="sing">
+          <div className="sing-title">
+            <div>
+              {gamesList.map((v, k) => (
+                <StyledAnimeSpan delay={`0.${k}`} key={k}>
+                  {v}
+                </StyledAnimeSpan>
+              ))}
+            </div>
+            <div>
+              {storeList.map((v, k) => (
+                <StyledAnimeSpan delay={`0.${k + 5}`} key={k}>
+                  {v}
+                </StyledAnimeSpan>
+              ))}
+            </div>
+          </div>
+        </div>
+        <div className="side-decorate" />
+        {decorateList.map((v, k) => {
+          return (
+            <div key={k} className={`insdie-decorate-part ${v}`}>
+              <div className="content">
+                <div className="top-part" />
+                <div className="other-light" />
+                <div className="other-light up" />
+                {BuildType7List.squareLightList.map((v, k) => {
+                  return (
+                    <SquareLight
+                      key={k}
+                      position={v.position}
+                      currentStyles={state.currentStyles}
+                      colorName={v.colorName}
+                      delay={v.delay}
+                    />
+                  );
+                })}
+              </div>
+            </div>
+          );
+        })}
+      </div>
+    </StyledBuildType7>
+  );
+};
+
+// BuildType8
+const StyledBuildType8 = styled.div`
+  ${({ position }) => common(position)};
+  width: 23%;
+  height: 90%;
+  .floor-top {
+    position: relative;
+    width: 40%;
+    margin-left: 20px;
+    height: 20%;
+    ${({ currentStyles }) =>
+      renderStyleColor({ currentStyles, color: "buildColor3" })}
+  }
+  .floor-middle {
+    position: relative;
+    width: 75%;
+    height: 20%;
+    ${({ currentStyles }) =>
+      renderStyleColor({ currentStyles, color: "buildColor3" })}
+    &:after {
+      content: "";
+      position: absolute;
+      top: 0;
+      left: 0;
+      transform: translateY(-100%);
+      border-bottom: ${({ currentStyles }) => `10px solid
+        ${styles.getIn(["background", currentStyles, "buildColor3"])}`};
+      border-top: 10px solid transparent;
+      border-left: 10px solid transparent;
+      border-right: ${({ currentStyles }) => `10px solid
+        ${styles.getIn(["background", currentStyles, "buildColor3"])}`};
+    }
+  }
+  .floor-bottom {
+    position: relative;
+    width: 100%;
+    height: 60%;
+    ${({ currentStyles }) =>
+      renderStyleColor({ currentStyles, color: "buildColor3" })}
+    &:before {
+      content: "";
+      position: absolute;
+      top: 0;
+      right: 12%;
+      transform: translateY(-100%);
+      width: 3%;
+      height: 25%;
+      ${({ currentStyles }) =>
+        renderStyleColor({ currentStyles, color: "buildColor3" })}
+    }
+    &:after {
+      content: "";
+      position: absolute;
+      top: 0;
+      right: 18%;
+      transform: translateY(-100%);
+      width: 3%;
+      height: 20%;
+      ${({ currentStyles }) =>
+        renderStyleColor({ currentStyles, color: "buildColor3" })}
+    }
+  }
+`;
+export const BuildType8 = ({ position }) => {
+  const [state] = useContext(ReducerContext);
+  return (
+    <StyledBuildType8 position={position} currentStyles={state.currentStyles}>
+      <div className="content">
+        <div className="floor-top">
+          {BuildType8List.straightLightList.map((v, k) => {
+            return (
+              <StraightLight
+                key={k}
+                nodisplay={v.nodisplay}
+                width={v.width}
+                hight={v.hight}
+                position={v.position}
+                currentStyles={state.currentStyles}
+                colorName={v.colorName}
+                delay={v.delay}
+              />
+            );
+          })}
+        </div>
+        <div className="floor-middle" />
+        <div className="floor-bottom" />
+      </div>
+    </StyledBuildType8>
+  );
+};
+
+// BuildType9
+const StyledBuildType9 = styled.div``;
+export const BuildType9 = ({ position }) => {
+  const [state] = useContext(ReducerContext);
+  return (
+    <StyledBuildType9 position={position} currentStyles={state.currentStyles}>
+      <div className="content"></div>
+    </StyledBuildType9>
   );
 };

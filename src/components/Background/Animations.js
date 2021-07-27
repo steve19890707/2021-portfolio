@@ -27,3 +27,28 @@ export const flashing = `@keyframes flashing {
       opacity: 1;
     }
   };`;
+export const opacity = `@keyframes opacity {
+    0% {
+      opacity: 0;
+    }
+    50% {
+      opacity: 1;
+    }
+    100% {
+      opacity: 0;
+    }
+  };`;
+export const opacityFont = `@keyframes opacityFont {
+    0% {
+      opacity: 0;
+    }
+    25% {
+      opacity: 1;
+    }
+    75% {
+      opacity: 1;
+    }
+    100% {
+      opacity: 0;
+    }
+  };`;

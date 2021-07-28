@@ -17,6 +17,10 @@ const GlobalStyle = createGlobalStyle`
     font-family: "PingFangSC-Regular";
   }
   @font-face {
+    font-family: jackeyfont;
+    src: url("./2021-portfolio/fonts/jackeyfont.ttf")format('truetype');
+  }
+  @font-face {
     font-family: RingMatrix;
     src: url("./2021-portfolio/fonts/RingMatrix.ttf")format('truetype');
   }

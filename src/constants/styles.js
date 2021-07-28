@@ -14,6 +14,8 @@ export const styles = fromJS({
       coverLight: `#ff00c2`,
       highLight: `#ff0000`,
       singLight1: `#6bff3b`,
+      singLight2: `#ffd53b`,
+      singLight3: `#bfa333`,
       singBackground: `#3b2fa2`,
     },
   },

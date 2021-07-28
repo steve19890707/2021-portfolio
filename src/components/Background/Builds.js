@@ -64,9 +64,13 @@ const SquareLight = styled.div`
   padding-bottom: 10px;
   z-index: 2;
   ${({ position }) => position};
-  ${({ currentStyles, colorName }) =>
-    renderStyleColor({ currentStyles, color: `${colorName}Back` })};
+  ${({ currentStyles, colorName, singleColor }) =>
+    renderStyleColor({
+      currentStyles,
+      color: `${singleColor ? colorName : `${colorName}Back`}`,
+    })};
   &::before {
+    display: ${({ singleColor }) => (singleColor ? `none` : `block`)};
     content: "";
     position: absolute;
     width: 80%;
@@ -166,6 +170,7 @@ export const BuildType1 = ({ position }) => {
               position={v.position}
               currentStyles={state.currentStyles}
               colorName={v.colorName}
+              singleColor={v.singleColor}
               delay={v.delay}
             />
           );
@@ -201,12 +206,74 @@ const StyledBuildType2 = styled.div`
     ${({ currentStyles }) =>
       renderStyleColor({ currentStyles, color: "buildColor3" })}
   }
+  .sing {
+    position: absolute;
+    width: 42%;
+    left: 50%;
+    top: 13%;
+    transform: translateX(-50%);
+    border-radius: 50%;
+    font-family: jackeyfont;
+    ${({ currentStyles }) =>
+      renderStyleColor({ currentStyles, color: "singLight3" })}
+    .sing-content {
+      position: relative;
+      width: 100%;
+      padding-bottom: 100%;
+      border-radius: 50%;
+    }
+    .cover {
+      ${flashing}
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      width: 85%;
+      height: 85%;
+      transform: translate(-50%, -50%);
+      border-radius: 50%;
+      z-index: 1;
+      ${({ currentStyles }) =>
+        renderStyleColor({ currentStyles, color: "singLight2" })}
+      animation: "flashing" 1.5s infinite;
+    }
+    .text {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-38%, -46%);
+      z-index: 2;
+      font-size: ${({ rwd }) =>
+        fetchRwdProps({
+          state: rwd,
+          desktop: `80px`,
+          pad: `30px`,
+          mobile: `30px`,
+        })};
+      ${({ currentStyles }) =>
+        renderFontColor({ currentStyles, color: "singLight3" })}
+    }
+  }
 `;
 export const BuildType2 = ({ position }) => {
   const [state] = useContext(ReducerContext);
+  const rwd = {
+    isDesktop: state.isDesktop,
+    isTablet: state.isTablet,
+    isMobile: state.isMobile,
+  };
   return (
-    <StyledBuildType2 position={position} currentStyles={state.currentStyles}>
+    <StyledBuildType2
+      rwd={rwd}
+      position={position}
+      currentStyles={state.currentStyles}
+    >
       <div className="content">
+        <div className="sing">
+          <div className="sing-content">
+            <div className="cover" />
+            <div className="text">樂</div>
+          </div>
+        </div>
         <div className="floor-top" />
         <div className="floor-middle" />
         <div className="floor-bottom" />
@@ -300,6 +367,7 @@ export const BuildType3 = ({ position }) => {
               position={v.position}
               currentStyles={state.currentStyles}
               colorName={v.colorName}
+              singleColor={v.singleColor}
               delay={v.delay}
             />
           );
@@ -668,6 +736,42 @@ const StyledBuildType7 = styled.div`
       ${({ currentStyles }) =>
         renderStyleColor({ currentStyles, color: "singBackground" })}
     }
+    .triangle {
+      position: absolute;
+      border: 10px solid transparent;
+      &.part1 {
+        top: 0;
+        left: 0;
+        border-top-color: ${({ currentStyles }) =>
+          `${styles.getIn(["background", currentStyles, "light2Front"])}`};
+        border-left-color: ${({ currentStyles }) =>
+          `${styles.getIn(["background", currentStyles, "light2Front"])}`};
+      }
+      &.part2 {
+        top: 0;
+        right: 0;
+        border-top-color: ${({ currentStyles }) =>
+          `${styles.getIn(["background", currentStyles, "light2Front"])}`};
+        border-right-color: ${({ currentStyles }) =>
+          `${styles.getIn(["background", currentStyles, "light2Front"])}`};
+      }
+      &.part3 {
+        bottom: 0;
+        left: 0;
+        border-bottom-color: ${({ currentStyles }) =>
+          `${styles.getIn(["background", currentStyles, "light2Front"])}`};
+        border-left-color: ${({ currentStyles }) =>
+          `${styles.getIn(["background", currentStyles, "light2Front"])}`};
+      }
+      &.part4 {
+        bottom: 0;
+        right: 0;
+        border-bottom-color: ${({ currentStyles }) =>
+          `${styles.getIn(["background", currentStyles, "light2Front"])}`};
+        border-right-color: ${({ currentStyles }) =>
+          `${styles.getIn(["background", currentStyles, "light2Front"])}`};
+      }
+    }
     .sing-title {
       width: 100%;
       height: 100%;
@@ -693,6 +797,7 @@ const StyledAnimeSpan = styled.span`
 export const BuildType7 = ({ position }) => {
   const [state] = useContext(ReducerContext);
   const decorateList = ["type1", "type2", "type3"];
+  const singDecorateList = ["part1", "part2", "part3", "part4"];
   const gamesList = ["G", "A", "M", "E", "S"];
   const storeList = ["S", "T", "O", "R", "E"];
   const rwd = {
@@ -708,6 +813,9 @@ export const BuildType7 = ({ position }) => {
     >
       <div className="content">
         <div className="sing">
+          {singDecorateList.map((v, k) => (
+            <div key={k} className={`triangle ${v}`} />
+          ))}
           <div className="sing-title">
             <div>
               {gamesList.map((v, k) => (

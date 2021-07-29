@@ -146,6 +146,66 @@ const StyledBackground = styled.div`
       background-color: ${({ currentStyles }) =>
         `${styles.getIn(["background", currentStyles, "sideShadow1"])}`};
     }
+    &.type6 {
+      left: 2%;
+      width: 5%;
+      height: 18%;
+      z-index: 2;
+      background-color: ${({ currentStyles }) =>
+        `${styles.getIn(["background", currentStyles, "sideShadow1"])}`};
+    }
+  }
+  .wires {
+    position: absolute;
+    height: 5px;
+    background-color: ${({ currentStyles }) =>
+      `${styles.getIn(["background", currentStyles, "wires"])}`};
+    &.part1 {
+      opacity: 0.4;
+      left: 6%;
+      bottom: 15%;
+      width: 9%;
+      transform: rotate(15deg);
+    }
+    &.part2 {
+      left: 6%;
+      bottom: 14%;
+      width: 9%;
+      transform: rotate(-10deg);
+    }
+    &.part3 {
+      opacity: 0.4;
+      left: 27%;
+      bottom: 13%;
+      width: 16%;
+      transform: rotate(-10deg);
+    }
+    &.part4 {
+      opacity: 0.6;
+      left: 27%;
+      bottom: 14%;
+      width: 16%;
+      transform: rotate(-15deg);
+    }
+    &.part5 {
+      left: 27%;
+      bottom: 16%;
+      width: 16%;
+      transform: rotate(12deg);
+    }
+    &.part6 {
+      opacity: 0.4;
+      left: 57%;
+      bottom: 14%;
+      width: 27%;
+      transform: rotate(5deg);
+    }
+    &.part7 {
+      left: 57%;
+      bottom: 15%;
+      width: 27%;
+      transform: rotate(-5deg);
+    }
   }
 `;
 
@@ -157,8 +217,9 @@ export const Background = () => {
     isMobile: state.isMobile,
   };
   const highLightList = [`part1`, `part2`, `part3`, `part4`, `part5`];
+  const wires = [`part1`, `part2`, `part3`, `part4`, `part5`, `part6`, `part7`];
   const darkLightList = [`part1`, `part2`, `part3`];
-  const minBuildList = [`type1`, `type2`, `type3`, `type4`, `type5`];
+  const minBuildList = [`type1`, `type2`, `type3`, `type4`, `type5`, `type6`];
   return (
     <StyledBackground rwd={{ ...rwd }} currentStyles={state.currentStyles}>
       <div className="background-content">
@@ -172,8 +233,11 @@ export const Background = () => {
         <BuildType8 position={`right:32%;`} />
         <BuildType2 position={`right:12%;`} />
         <BuildType3 position={`right:19%;`} />
-        <BuildType1 position={`right:4%;`} />
         <BuildType4 position={`left:4%;`} />
+        {wires.map((v, k) => (
+          <div key={k} className={`wires ${v}`} />
+        ))}
+        <BuildType1 position={`right:4%;`} />
         <BuildType5 position={`left:14%;`} />
         <BuildType6 position={`left:50%;`} />
         {darkLightList.map((v, k) => (

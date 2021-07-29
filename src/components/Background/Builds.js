@@ -251,6 +251,7 @@ const StyledBuildType2 = styled.div`
         })};
       ${({ currentStyles }) =>
         renderFontColor({ currentStyles, color: "singLight3" })}
+      user-select: none;
     }
   }
 `;
@@ -271,7 +272,7 @@ export const BuildType2 = ({ position }) => {
         <div className="sing">
           <div className="sing-content">
             <div className="cover" />
-            <div className="text">樂</div>
+            <div className="text">独</div>
           </div>
         </div>
         <div className="floor-top" />
@@ -397,13 +398,62 @@ const StyledBuildType4 = styled.div`
     ${({ currentStyles }) =>
       renderStyleColor({ currentStyles, color: "sideShadow1" })}
   }
+  .text {
+    font-family: RingMatrix;
+    position: absolute;
+    font-size: ${({ rwd }) =>
+      fetchRwdProps({
+        state: rwd,
+        desktop: `42px`,
+        pad: `30px`,
+        mobile: `30px`,
+      })};
+    ${({ currentStyles }) =>
+      renderFontColor({ currentStyles, color: "light2Front" })}
+    user-select: none;
+    &-0 {
+      right: 10%;
+      top: 10%;
+    }
+    &-1 {
+      right: 10%;
+      top: 15%;
+    }
+    &-2 {
+      right: 11.5%;
+      top: 20%;
+    }
+    &-3 {
+      right: 12%;
+      top: 25%;
+    }
+    &-4 {
+      right: 11.5%;
+      top: 30%;
+    }
+  }
 `;
 export const BuildType4 = ({ position }) => {
   const [state] = useContext(ReducerContext);
+  const rwd = {
+    isDesktop: state.isDesktop,
+    isTablet: state.isTablet,
+    isMobile: state.isMobile,
+  };
+  const textList = ["H", "O", "T", "E", "L"];
   return (
-    <StyledBuildType4 position={position} currentStyles={state.currentStyles}>
+    <StyledBuildType4
+      rwd={rwd}
+      position={position}
+      currentStyles={state.currentStyles}
+    >
       <div className="content">
         <div className="inside-decorate" />
+        {textList.map((v, k) => (
+          <div key={k} className={`text text-${k}`}>
+            {v}
+          </div>
+        ))}
         {BuildType4List.straightLightList.map((v, k) => {
           return (
             <StraightLight
@@ -425,6 +475,7 @@ export const BuildType4 = ({ position }) => {
               position={v.position}
               currentStyles={state.currentStyles}
               colorName={v.colorName}
+              singleColor={v.singleColor}
               delay={v.delay}
             />
           );
@@ -467,12 +518,67 @@ const StyledBuildType5 = styled.div`
       width: 50%;
     }
   }
+  .straight-decorate {
+    position: absolute;
+    top: 0;
+    right: 5%;
+    width: 7%;
+    height: 12%;
+    transform: translateY(-100%);
+    ${({ currentStyles }) =>
+      renderStyleColor({ currentStyles, color: "buildColor1" })}
+    &.part-2 {
+      right: 15%;
+      width: 4%;
+      height: 18%;
+    }
+  }
+  .text {
+    font-family: RingMatrix;
+    position: absolute;
+    font-size: ${({ rwd }) =>
+      fetchRwdProps({
+        state: rwd,
+        desktop: `50px`,
+        pad: `30px`,
+        mobile: `30px`,
+      })};
+    ${({ currentStyles }) =>
+      renderFontColor({ currentStyles, color: "singLight2" })}
+    user-select: none;
+    &-0 {
+      left: 37%;
+      top: 16%;
+    }
+    &-1 {
+      left: 49%;
+      top: 16%;
+    }
+    &-2 {
+      left: 61%;
+      top: 16%;
+    }
+    &-3 {
+      left: 73%;
+      top: 16%;
+    }
+  }
 `;
 export const BuildType5 = ({ position }) => {
   const [state] = useContext(ReducerContext);
   const decorateList = ["type1", "type2", "type3", "type4"];
+  const textList = ["2", "0", "7", "7"];
+  const rwd = {
+    isDesktop: state.isDesktop,
+    isTablet: state.isTablet,
+    isMobile: state.isMobile,
+  };
   return (
-    <StyledBuildType5 position={position} currentStyles={state.currentStyles}>
+    <StyledBuildType5
+      rwd={rwd}
+      position={position}
+      currentStyles={state.currentStyles}
+    >
       <div className="content">
         {BuildType5List.squareLightList.map((v, k) => {
           return (
@@ -481,14 +587,22 @@ export const BuildType5 = ({ position }) => {
               position={v.position}
               currentStyles={state.currentStyles}
               colorName={v.colorName}
+              singleColor={v.singleColor}
               delay={v.delay}
             />
           );
         })}
         <div className="side-decorate" />
+        {textList.map((v, k) => (
+          <div key={k} className={`text text-${k}`}>
+            {v}
+          </div>
+        ))}
         {decorateList.map((v, k) => (
           <div key={k} className={`insdie-decorate ${v}`} />
         ))}
+        <div className="straight-decorate" />
+        <div className="straight-decorate part-2" />
       </div>
     </StyledBuildType5>
   );
@@ -588,13 +702,179 @@ const StyledBuildType6 = styled.div`
         renderStyleColor({ currentStyles, color: "sideShadow1" })}
     }
   }
+  .sing {
+    position: absolute;
+    top: 22%;
+    left: 0;
+    transform: translateX(-100%);
+    width: 40%;
+    height: 35%;
+    .sing-content {
+      width: 100%;
+      height: 100%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    .text-area {
+      position: relative;
+      width: 80%;
+      height: 100%;
+      padding: 6% 0;
+      box-sizing: border-box;
+      font-family: jackeyfont;
+      ${flashing}
+      ${({ currentStyles }) =>
+        renderStyleColor({ currentStyles, color: "buildColor1" })}
+      .inside {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        width: 80%;
+        height: 95%;
+        border: ${({ currentStyles }) => `3px solid
+        ${styles.getIn(["background", currentStyles, "light2Front"])}`};
+        transform: translate(-50%, -50%);
+        animation: "flashing" 1s infinite;
+      }
+      .sing-text {
+        width: 100%;
+        height: 22%;
+        text-align: center;
+        transform: translate(5%, 20%);
+        font-size: ${({ rwd }) =>
+          fetchRwdProps({
+            state: rwd,
+            desktop: `50px`,
+            pad: `30px`,
+            mobile: `30px`,
+          })};
+        ${({ currentStyles }) =>
+          renderFontColor({ currentStyles, color: "highLight" })}
+        user-select: none;
+      }
+    }
+    .support-area {
+      position: relative;
+      width: 20%;
+      height: 100%;
+      .support {
+        ${flashing}
+        position: absolute;
+        right: 0;
+        width: 100%;
+        height: 2%;
+        transform: rotate(45deg);
+        transform-origin: center;
+        animation: "flashing" 1s infinite;
+        ${({ currentStyles }) =>
+          renderStyleColor({ currentStyles, color: "light2Front" })}
+        &.part1 {
+          top: 10%;
+        }
+        &.part2 {
+          top: 20%;
+        }
+        &.part3 {
+          top: 30%;
+        }
+        &.part4 {
+          top: 40%;
+        }
+        &.part5 {
+          top: 50%;
+        }
+        &.part6 {
+          top: 60%;
+        }
+        &.part7 {
+          top: 70%;
+        }
+        &.part8 {
+          top: 80%;
+        }
+        &.part9 {
+          top: 90%;
+        }
+      }
+    }
+  }
+  .main-picture {
+    position: absolute;
+    width: 5%;
+    padding-bottom: 2%;
+    background-color: red;
+    z-index: 2;
+    &-1 {
+      left: 10%;
+      top: 15%;
+    }
+    &-2 {
+      left: 17%;
+      top: 15%;
+    }
+    &-3 {
+      left: 24%;
+      top: 15%;
+    }
+    &-4 {
+      left: 31%;
+      top: 15%;
+    }
+    &-5 {
+      left: 38%;
+      top: 15%;
+    }
+  }
 `;
 export const BuildType6 = ({ position }) => {
   const [state] = useContext(ReducerContext);
   const decorateList = ["type1", "type2", "type3", "type4"];
+  const supportType = [
+    "part1",
+    "part2",
+    "part3",
+    "part4",
+    "part5",
+    "part6",
+    "part7",
+    "part8",
+    "part9",
+  ];
+  const mainPicture = ["1", "2", "3", "4", "5"];
+  const singText = ["フ", "ア", "モ", "サ"];
+  const rwd = {
+    isDesktop: state.isDesktop,
+    isTablet: state.isTablet,
+    isMobile: state.isMobile,
+  };
   return (
-    <StyledBuildType6 position={position} currentStyles={state.currentStyles}>
+    <StyledBuildType6
+      rwd={rwd}
+      position={position}
+      currentStyles={state.currentStyles}
+    >
       <div className="content">
+        <div className="sing">
+          <div className="sing-content">
+            <div className="text-area">
+              <div className="inside" />
+              {singText.map((v, k) => (
+                <div key={k} className={`sing-text`}>
+                  {v}
+                </div>
+              ))}
+            </div>
+            <div className="support-area">
+              {supportType.map((v, k) => (
+                <div key={k} className={`support ${v}`} />
+              ))}
+            </div>
+          </div>
+        </div>
+        {mainPicture.map((v, k) => (
+          <div key={k} className={`main-picture main-picture-${v}`} />
+        ))}
         {BuildType6List.squareLightList.map((v, k) => {
           return (
             <SquareLight
@@ -602,6 +882,7 @@ export const BuildType6 = ({ position }) => {
               position={v.position}
               currentStyles={state.currentStyles}
               colorName={v.colorName}
+              singleColor={v.singleColor}
               delay={v.delay}
             />
           );
@@ -788,6 +1069,7 @@ const StyledBuildType7 = styled.div`
         })};
       ${({ currentStyles }) =>
         renderFontColor({ currentStyles, color: "singLight1" })}
+      user-select: none;
     }
   }
 `;

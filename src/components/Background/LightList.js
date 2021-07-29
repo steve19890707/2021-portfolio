@@ -356,13 +356,31 @@ export const BuildType4List = {
       delay: 0,
     },
     {
+      position: "top:17.5%;left:50%;",
+      colorName: "sideShadow1",
+      singleColor: true,
+      delay: 0,
+    },
+    {
       position: "top:20%;left:50%;",
       colorName: "light2",
       delay: 1.2,
     },
     {
+      position: "top:20%;left:40%;",
+      colorName: "sideShadow1",
+      singleColor: true,
+      delay: 1.2,
+    },
+    {
       position: "top:22.5%;left:50%;",
       colorName: "light2",
+      delay: 1,
+    },
+    {
+      position: "top:22.5%;left:40%;",
+      colorName: "sideShadow1",
+      singleColor: true,
       delay: 1,
     },
   ],
@@ -386,9 +404,21 @@ export const BuildType5List = {
       delay: 0,
     },
     {
+      position: "top:5%;left:40%;",
+      colorName: "sideShadow1",
+      singleColor: true,
+      delay: 0,
+    },
+    {
       position: "top:5%;left:50%;",
       colorName: "light2",
       delay: 1,
+    },
+    {
+      position: "top:5%;left:60%;",
+      colorName: "sideShadow1",
+      singleColor: true,
+      delay: 0,
     },
     {
       position: "top:10%;left:10%;",
@@ -441,13 +471,43 @@ export const BuildType6List = {
       delay: 0.4,
     },
     {
+      position: "top:8%;left:10%;",
+      colorName: "sideShadow1",
+      singleColor: true,
+      delay: 1,
+    },
+    {
+      position: "top:8%;left:17.5%;",
+      colorName: "sideShadow1",
+      singleColor: true,
+      delay: 0.2,
+    },
+    {
+      position: "top:8%;left:25%;",
+      colorName: "sideShadow1",
+      singleColor: true,
+      delay: 0.4,
+    },
+    {
       position: "top:5%;left:50%;",
       colorName: "light2",
       delay: 1.2,
     },
     {
+      position: "top:8%;left:50%;",
+      colorName: "sideShadow1",
+      singleColor: true,
+      delay: 1.2,
+    },
+    {
       position: "top:57%;right:10%;",
       colorName: "light2",
+      delay: 1,
+    },
+    {
+      position: "top:57%;right:17.5%;",
+      colorName: "sideShadow1",
+      singleColor: true,
       delay: 1,
     },
     {
@@ -481,32 +541,32 @@ export const BuildType7List = {
       delay: 1,
     },
     {
-      position: "top:8%;left:20%;",
+      position: "top:9%;left:20%;",
       colorName: "light2",
       delay: 1,
     },
     {
-      position: "top:8%;left:40%;",
+      position: "top:9%;left:40%;",
       colorName: "light2",
       delay: 1,
     },
     {
-      position: "top:8%;left:60%;",
+      position: "top:9%;left:60%;",
       colorName: "light2",
       delay: 1,
     },
     {
-      position: "top:11%;left:20%;",
+      position: "top:13%;left:20%;",
       colorName: "light2",
       delay: 0,
     },
     {
-      position: "top:11%;left:40%;",
+      position: "top:13%;left:40%;",
       colorName: "light2",
       delay: 0,
     },
     {
-      position: "top:11%;left:60%;",
+      position: "top:13%;left:60%;",
       colorName: "light2",
       delay: 0,
     },

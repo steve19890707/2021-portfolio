@@ -105,28 +105,28 @@ const StyledBackground = styled.div`
       `${styles.getIn(["background", currentStyles, "highLight"])}`};
     animation: "opacity" 4s infinite;
     &.part1 {
-      height: 90vh;
+      height: 90%;
       left: 10%;
       bottom: 0;
     }
     &.part2 {
       left: 11%;
-      height: 100vh;
+      height: 100%;
       bottom: 0;
     }
     &.part3 {
       right: 8%;
-      height: 95vh;
+      height: 95%;
       bottom: 0;
     }
     &.part4 {
       right: 9%;
-      height: 100vh;
+      height: 100%;
       bottom: 0;
     }
     &.part5 {
       left: 12%;
-      height: 30vh;
+      height: 30%;
       top: 0;
     }
   }

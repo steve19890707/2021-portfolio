@@ -8,6 +8,7 @@ const StyledApp = styled.div`
   position: fixed;
   z-index: 2;
 `;
+const host = !!~window.location.host.indexOf(":");
 const GlobalStyle = createGlobalStyle`
   body {
     padding: 0;
@@ -18,15 +19,15 @@ const GlobalStyle = createGlobalStyle`
   }
   @font-face {
     font-family: jackeyfont;
-    src: url("./2021-portfolio/fonts/jackeyfont.ttf")format('truetype');
+    src: url("${host && "2021-portfolio/"}fonts/jackeyfont.ttf")format('truetype');
   }
   @font-face {
     font-family: RingMatrix;
-    src: url("./2021-portfolio/fonts/RingMatrix.ttf")format('truetype');
+    src: url("${host && "2021-portfolio/"}fonts/RingMatrix.ttf")format('truetype');
   }
   @font-face {
     font-family: FR73Pixel;
-    src: url("./2021-portfolio/fonts/FR73Pixel.ttf")format('truetype');
+    src: url("${host && "2021-portfolio/"}fonts/FR73Pixel.ttf")format('truetype');
   }
 `;
 export const App = () => {

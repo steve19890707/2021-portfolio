@@ -25,7 +25,7 @@ export const StyledBuildType4 = styled.div`
     font-size: ${({ rwd }) =>
       fetchRwdProps({
         state: rwd,
-        desktop: `42px`,
+        desktop: `40px`,
         pad: `30px`,
         mobile: `30px`,
       })};
@@ -38,19 +38,19 @@ export const StyledBuildType4 = styled.div`
     }
     &-1 {
       right: 10%;
-      top: 15%;
+      top: 16%;
     }
     &-2 {
       right: 11.5%;
-      top: 20%;
+      top: 22%;
     }
     &-3 {
       right: 12%;
-      top: 25%;
+      top: 28%;
     }
     &-4 {
       right: 11.5%;
-      top: 30%;
+      top: 34%;
     }
   }
 `;

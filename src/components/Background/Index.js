@@ -25,14 +25,14 @@ const StyledBackground = styled.div`
   width: ${({ rwd }) =>
     fetchRwdProps({
       state: rwd,
-      desktop: `1500px`,
+      desktop: `1200px`,
       pad: `100%`,
       mobile: `100%`,
     })};
   min-height: ${({ rwd }) =>
     fetchRwdProps({
       state: rwd,
-      desktop: `1000px`,
+      desktop: `900px`,
     })};
   .background-content {
     position: relative;
@@ -49,7 +49,7 @@ const StyledBackground = styled.div`
     min-width: ${({ rwd }) =>
       fetchRwdProps({
         state: rwd,
-        desktop: `1500px`,
+        desktop: `1200px`,
         pad: `100%`,
         mobile: `100%`,
       })};
@@ -69,7 +69,7 @@ const StyledBackground = styled.div`
     min-width: ${({ rwd }) =>
       fetchRwdProps({
         state: rwd,
-        desktop: `1500px`,
+        desktop: `1200px`,
         pad: `100%`,
         mobile: `100%`,
       })};

@@ -70,7 +70,7 @@ export const StyledBuildType2 = styled.div`
       font-size: ${({ rwd }) =>
         fetchRwdProps({
           state: rwd,
-          desktop: `80px`,
+          desktop: `65px`,
           pad: `30px`,
           mobile: `30px`,
         })};

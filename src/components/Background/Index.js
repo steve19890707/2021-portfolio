@@ -3,6 +3,7 @@ import { ReducerContext } from "../Props";
 import styled from "styled-components";
 import { styles } from "../../constants/styles";
 import { opacity } from "./Animations";
+import { CarTypeA, CarTypeB, Zeplin } from "./Transportation";
 // fetch functions
 import { fetchRwdProps } from "../../constants/fetchFuntions";
 // css modules
@@ -15,7 +16,7 @@ import {
   BuildType6,
   BuildType7,
   BuildType8,
-} from "./Builds";
+} from "./Builds/Index";
 const StyledBackground = styled.div`
   position: relative;
   z-index: 1;
@@ -37,6 +38,29 @@ const StyledBackground = styled.div`
     position: relative;
     width: 100%;
     height: 100%;
+  }
+  .bg-color-cover {
+    position: absolute;
+    width: 100vw;
+    height: 3vh;
+    background-color: ${({ currentStyles }) =>
+      `${styles.getIn(["background", currentStyles, "bgCoverColor1"])}`};
+    top: 0;
+    min-width: ${({ rwd }) =>
+      fetchRwdProps({
+        state: rwd,
+        desktop: `1500px`,
+        pad: `100%`,
+        mobile: `100%`,
+      })};
+    left: 50%;
+    transform: translateX(-50%);
+    &-2 {
+      top: 3vh;
+      height: 5vh;
+      background-color: ${({ currentStyles }) =>
+        `${styles.getIn(["background", currentStyles, "bgCoverColor2"])}`};
+    }
   }
   .dark-light-cover {
     position: absolute;
@@ -223,6 +247,8 @@ export const Background = () => {
   return (
     <StyledBackground rwd={{ ...rwd }} currentStyles={state.currentStyles}>
       <div className="background-content">
+        <div className="bg-color-cover" />
+        <div className="bg-color-cover bg-color-cover-2" />
         {highLightList.map((v, k) => (
           <div key={k} className={`high-light ${v}`} />
         ))}
@@ -237,9 +263,14 @@ export const Background = () => {
         {wires.map((v, k) => (
           <div key={k} className={`wires ${v}`} />
         ))}
+        <CarTypeB position={`bottom:5%;`} seconds={3} color={`carColorC`} />
+        <CarTypeA position={`bottom:3%;`} seconds={6} color={`carColorA`} />
         <BuildType1 position={`right:4%;`} />
         <BuildType5 position={`left:14%;`} />
         <BuildType6 position={`left:50%;`} />
+        <CarTypeA position={`bottom:5%;`} seconds={4} color={`carColorB`} />
+        <CarTypeB position={`bottom:6%;`} seconds={6} color={`carColorD`} />
+        <Zeplin position={`top:7%;right:18%;`} />
         {darkLightList.map((v, k) => (
           <div key={k} className={`dark-light-cover ${v}`} />
         ))}
